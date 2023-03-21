@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - "cotacao-dolar/docs/assets/diagrams/**.puml"
+      - "./cotacao-dolar/docs/assets/diagrams/**.puml"
 
 jobs:
   generate_plantuml:
@@ -19,7 +19,7 @@ jobs:
         id: plantuml
         uses: grassedge/generate-plantuml-action@v1.5
         with:
-          path: cotacao-dolar/docs/assets/diagrams
+          path: ./cotacao-dolar/docs/assets/diagrams
           message: "docs: Render PlantUML files"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
