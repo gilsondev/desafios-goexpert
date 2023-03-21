@@ -1,0 +1,10 @@
+version: "3"
+services:
+  plantuml:
+    platform: linux/amd64
+    build:
+      context: ./docs
+    image: cotacao-dolar/plantuml-cli
+    container_name: plantuml_cli
+    volumes:
+      - ./docs/assets:/usr/docs/assets
