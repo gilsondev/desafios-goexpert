@@ -1,0 +1,26 @@
+@startuml system
+!include <C4/C4_Context.puml>
+!include <C4/C4_Container.puml>
+!include <C4/C4_Component.puml>
+
+AddRelTag("async", $lineStyle = DashedLine())
+
+left to right direction
+LAYOUT_WITH_LEGEND()
+
+title Sistema de Cotação de Dólar
+
+System(server_external, "Cotação de Dólar", "Awesome API")
+
+System_Boundary(system_boundary, "Sistema de Cotação de Dólar") {
+    Container(client, "Client", "Go", "Sistema Cliente")
+    Container(server, "Server", "Go", "Sistema Servidor")
+    Container(db, "Banco de Dados", "SQLite", "Banco de Dados para registro das cotações")
+    Container(cotacao_txt, "Registros da Cotação", "Arquivo Texto", "Arquivo com cotação atual do dólar")
+
+    Rel(client, server, "Acessa os dados da cotação do dólar", "HTTP")
+    Rel(server, server_external, "Busca dados da cotação do dólar no momento", "HTTP")
+    Rel(server, db, "Persiste a cotação do dólar retornado pela API Externa", "TCP")
+    Rel(client, cotacao_txt, "Persiste a cotação atual no arquivo", "I/O")
+}
+@enduml
