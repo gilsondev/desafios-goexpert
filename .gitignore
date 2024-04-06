@@ -15,3 +15,11 @@
 # vendor/
 
 .DS_Store
+
+# SQLite
+*.sqlite
+*.sqlite3
+*.db
+
+# Others
+cotacao-dolar.txt
